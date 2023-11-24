@@ -1,6 +1,7 @@
-import 'package:chatapplaction/constants.dart';
+//import 'package:chatapplaction/constants.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomFormTextField extends StatelessWidget {
   CustomFormTextField(
       {this.hintText, this.onChanged, this.obscureText = false});
@@ -16,6 +17,7 @@ class CustomFormTextField extends StatelessWidget {
         if (data!.isEmpty) {
           return 'field is required';
         }
+        return null;
       },
       onChanged: onChanged,
       decoration: InputDecoration(

@@ -2,7 +2,8 @@ import 'package:chatapplaction/constants.dart';
 import 'package:chatapplaction/models/message.dart';
 import 'package:chatapplaction/pages/cubits/chat_cubit.dart';
 import 'package:chatapplaction/widgets/chat_buble.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,12 +37,9 @@ class ChatPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child:
-                BlocConsumer<ChatCubit, ChatState>(listener: (context, state) {
-              if (state is ChatSuccess) {
-                messagesList = state.messages;
-              }
-            }, builder: (context, state) {
+            child: BlocBuilder<ChatCubit, ChatState>(builder: (context, state) {
+              var messagesList =
+                  BlocProvider.of<ChatCubit>(context).messagesList;
               return ListView.builder(
                   reverse: true,
                   controller: _conroller,

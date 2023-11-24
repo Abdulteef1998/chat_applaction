@@ -1,5 +1,6 @@
 import 'package:chatapplaction/pages/chat_page.dart';
-import 'package:chatapplaction/pages/cubits/login_cubit.dart';
+import 'package:chatapplaction/pages/cubits/auth/auth_cubit.dart';
+import 'cubits/auth/auth_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is LoginLoading) {
           isLoading = true;
@@ -101,11 +102,14 @@ class LoginPage extends StatelessWidget {
                   CustomButton(
                     onTap: () async {
                       if (FormKey.currentState!.validate()) {
-                        BlocProvider.of<LoginCubit>(context)
+                        BlocProvider.of<AuthCubit>(context)
                             .loginUser(email: email!, password: password!);
-                      } else {}
+                      }
                     },
                     text: 'LOGIN',
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
